@@ -9,7 +9,6 @@ var AvatarStorage = require('../helpers/AvatarStorage');
 
 // setup a new instance of the AvatarStorage engine 
 var storage = AvatarStorage({
-	storage: 's3',
 	square: true,
 	responsive: true,
 	greyscale: true,

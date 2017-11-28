@@ -3,7 +3,6 @@ var _ = require('lodash');
 var fs = require('fs');
 var path = require('path');
 var Jimp = require('jimp');
-var AWS = require('aws-sdk');
 var crypto = require('crypto');
 var mkdirp = require('mkdirp');
 var concat = require('concat-stream');
@@ -13,18 +12,15 @@ var streamifier = require('streamifier');
 // process.env.AVATAR_STORAGE contains uploads/avatars
 var UPLOAD_PATH = path.resolve(__dirname, '..', process.env.AVATAR_STORAGE);
 
-AWS.config.region = process.env.AWS_S3_BUCKET_REGION
-
 // create a multer storage engine
 var AvatarStorage = function(options) {
-    
-    var S3 = new AWS.S3();
 
     // this serves as a constructor
 	function AvatarStorage(opts) {
 
         var baseUrl = process.env.AVATAR_BASE_URL;
-        var allowedStorageSystems = ['local', 's3'];
+
+        var allowedStorageSystems = ['local'];
         var allowedOutputFormats = ['jpg', 'png'];
 
         // fallback for the options
@@ -81,8 +77,7 @@ var AvatarStorage = function(options) {
         this.uploadPath = this.options.responsive ? path.join(UPLOAD_PATH, 'responsive') : UPLOAD_PATH;
         
         // set the upload base url
-        baseUrl = this.options.responsive ? path.join(baseUrl, 'responsive') : baseUrl;
-        this.uploadBaseUrl = baseUrl;
+        this.uploadBaseUrl = this.options.responsive ? path.join(baseUrl, 'responsive') : baseUrl;
 
         if (this.options.storage == 'local') {
             // if upload path does not exist, create the upload path structure
@@ -240,12 +235,6 @@ var AvatarStorage = function(options) {
                 if (that.options.storage == 'local') {
                     // create a read stream from the buffer and pipe it to the output stream
                     streamifier.createReadStream(buffer).pipe(current.stream);
-                } else if (that.options.storage == 's3') {
-                    // S3.createObject({
-                    //     Bucket: process.env.AWS_S3_BUCKET,
-                    //     Body: buffer,
-                    //     key:
-                    // })
                 }
             });
         });
