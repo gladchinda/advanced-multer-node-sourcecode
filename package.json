@@ -6,7 +6,6 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
-    "aws-sdk": "^2.156.0",
     "body-parser": "~1.17.1",
     "concat-stream": "^1.6.0",
     "cookie-parser": "~1.4.3",
