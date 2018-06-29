@@ -1,5 +1,7 @@
 # advanced-multer-node-sourcecode
 
+**You can checkout the complete tutorial on Scotch: [Advanced Photo Upload in Node](https://scotch.io/tutorials/advanced-photo-upload-in-node).**
+
 Source code for tutorial on advanced photo upload in Node using Multer and Jimp. In order to run the demo on your local machine and experiment with the source code, do the following:
 
 - Clone the repository into a new directory on your machine
