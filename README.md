@@ -9,7 +9,7 @@ Source code for tutorial on advanced photo upload in Node using Multer and Jimp.
 - Run the following command from the new directory to install the dependencies:
 
 ```sh
-npm install --save express lodash body-parser morgan cookie-parser debug ejs serve-favicon multer jimp dotenv concat-stream streamifier mkdirp
+npm install
 ```
 
 - Create a `.env` file in the root of the new directory with the following content:
